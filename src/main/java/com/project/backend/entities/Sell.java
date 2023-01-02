@@ -23,21 +23,24 @@ public class Sell {
 
     @JsonBackReference(value = "client")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Client client;
+    private Costumer costumer;
 
-    public Sell(int id, String name, int quantity, int totalPrice, Client client) {
+    public Sell(String name, int quantity, int totalPrice) {
+    }
+
+    public Sell(int id, String name, int quantity, int totalPrice, Costumer costumer) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        this.client = client;
+        this.costumer = costumer;
     }
 
-    public Sell(String name, int quantity, int totalPrice, Client client) {
+    public Sell(String name, int quantity, int totalPrice, Costumer costumer) {
         this.name = name;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        this.client = client;
+        this.costumer = costumer;
     }
 
     public int getId() {
@@ -72,12 +75,12 @@ public class Sell {
         this.totalPrice = totalPrice;
     }
 
-    public Client getClient() {
-        return client;
+    public Costumer getClient() {
+        return costumer;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(Costumer costumer) {
+        this.costumer = costumer;
     }
 
     @Override
@@ -85,12 +88,12 @@ public class Sell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sell sell = (Sell) o;
-        return id == sell.id && quantity == sell.quantity && totalPrice == sell.totalPrice && Objects.equals(name, sell.name) && Objects.equals(client, sell.client);
+        return id == sell.id && quantity == sell.quantity && totalPrice == sell.totalPrice && Objects.equals(name, sell.name) && Objects.equals(costumer, sell.costumer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity, totalPrice, client);
+        return Objects.hash(id, name, quantity, totalPrice, costumer);
     }
 
     @Override
@@ -100,7 +103,7 @@ public class Sell {
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
-                ", client=" + client +
+                ", client=" + costumer +
                 '}';
     }
 }

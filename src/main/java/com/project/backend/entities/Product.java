@@ -1,12 +1,14 @@
 package com.project.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "Products")
+@Table(name = "PRODUCT")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
 
     @Id
@@ -22,26 +24,27 @@ public class Product {
     @Column(name = "Price")
     private int price;
 
-    @JsonBackReference(value = "client")
+    @JsonBackReference(value = "costumer")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Client client;
+    private Costumer costumer;
 
-    public Product() {
+    public Product(String name, int code, int price) {
     }
 
-    public Product(int id, String name, int code, int price, Client client) {
+
+    public Product(int id, String name, int code, int price, Costumer costumer) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.price = price;
-        this.client = client;
+        this.costumer = costumer;
     }
 
-    public Product(String name, int code, int price, Client client) {
+    public Product(String name, int code, int price, Costumer costumer) {
         this.name = name;
         this.code = code;
         this.price = price;
-        this.client = client;
+        this.costumer = costumer;
     }
 
     public int getId() {
@@ -76,12 +79,12 @@ public class Product {
         this.price = price;
     }
 
-    public Client getClient() {
-        return client;
+    public Costumer getClient() {
+        return costumer;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(Costumer costumer) {
+        this.costumer = costumer;
     }
 
     @Override
@@ -89,12 +92,12 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && code == product.code && price == product.price && Objects.equals(name, product.name) && Objects.equals(client, product.client);
+        return id == product.id && code == product.code && price == product.price && Objects.equals(name, product.name) && Objects.equals(costumer, product.costumer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, price, client);
+        return Objects.hash(id, name, code, price, costumer);
     }
 
     @Override
@@ -104,7 +107,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", code=" + code +
                 ", price=" + price +
-                ", client=" + client +
+                ", client=" + costumer +
                 '}';
     }
 }
