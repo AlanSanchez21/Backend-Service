@@ -1,12 +1,16 @@
 package com.project.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.backend.requests.ProductInSellRequest;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Sells")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Sell {
 
     @Id
@@ -25,7 +29,7 @@ public class Sell {
     @ManyToOne(fetch = FetchType.EAGER)
     private Costumer costumer;
 
-    public Sell(String name, int quantity, int totalPrice) {
+    public Sell(String name, List<ProductInSellRequest> quantity, int totalPrice) {
     }
 
     public Sell(int id, String name, int quantity, int totalPrice, Costumer costumer) {

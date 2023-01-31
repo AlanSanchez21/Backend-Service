@@ -1,5 +1,6 @@
 package com.project.backend.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.project.backend.entities.Costumer;
 import com.project.backend.requests.CostumerRequest;
 import com.project.backend.services.CostumerService;
@@ -16,6 +17,12 @@ import java.util.Optional;
 public class CostumerController {
     @Autowired
     private CostumerService costumerService;
+
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createCostumer (@RequestBody CostumerRequest costumerRequest) throws JsonProcessingException {
+
+        return ResponseEntity.ok(costumerService.postCostumer(costumerRequest));
+    }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> postCostumer(@RequestBody CostumerRequest costumerRequest) {

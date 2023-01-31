@@ -1,7 +1,12 @@
 package com.project.backend.services;
 
+import com.project.backend.entities.Costumer;
+import com.project.backend.entities.Product;
 import com.project.backend.entities.Sell;
+import com.project.backend.repositories.CostumerRepository;
+import com.project.backend.repositories.ProductRepository;
 import com.project.backend.repositories.SellRepository;
+import com.project.backend.requests.SellRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,4 +34,6 @@ public class SellService {
     public void deleteSell(long id) {
         sellRepository.deleteById(id);
     }
+
+
 }

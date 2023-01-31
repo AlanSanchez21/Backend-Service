@@ -1,6 +1,7 @@
 package com.project.backend.controllers;
 
 import com.project.backend.entities.Sell;
+import com.project.backend.repositories.SellRepository;
 import com.project.backend.requests.SellRequest;
 import com.project.backend.services.SellService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ import java.util.Optional;
 public class SellController {
     @Autowired
     private SellService sellService;
+    @Autowired
+    private SellRepository sellRepository;
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> postSell(@RequestBody SellRequest sellRequest) {
         try {
             Sell newSell = new Sell(
-                    sellRequest.getName(),
+                    sellRequest.getCostumerId(),
                     sellRequest.getQuantity(),
                     sellRequest.getTotalPrice()
             );

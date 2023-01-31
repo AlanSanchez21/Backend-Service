@@ -1,34 +1,35 @@
 package com.project.backend.requests;
 
+import java.util.List;
 import java.util.Objects;
 
 public class SellRequest {
-    private String name;
-    private int quantity;
+    private String costumerId;
+    private List<ProductInSellRequest> quantity;
     private int totalPrice;
 
     public SellRequest() {
     }
 
-    public SellRequest(String name, int quantity, int totalPrice) {
-        this.name = name;
+    public SellRequest(String name, List<ProductInSellRequest> quantity, int totalPrice) {
+        this.costumerId = name;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 
-    public String getName() {
-        return name;
+    public String getCostumerId() {
+        return costumerId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCostumerId(String costumerId) {
+        this.costumerId = costumerId;
     }
 
-    public int getQuantity() {
+    public List<ProductInSellRequest> getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(List<ProductInSellRequest> quantity) {
         this.quantity = quantity;
     }
 
@@ -45,20 +46,11 @@ public class SellRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SellRequest that = (SellRequest) o;
-        return quantity == that.quantity && totalPrice == that.totalPrice && Objects.equals(name, that.name);
+        return totalPrice == that.totalPrice && Objects.equals(costumerId, that.costumerId) && Objects.equals(quantity, that.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, quantity, totalPrice);
-    }
-
-    @Override
-    public String toString() {
-        return "SellRequest{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", totalPrice=" + totalPrice +
-                '}';
+        return Objects.hash(costumerId, quantity, totalPrice);
     }
 }

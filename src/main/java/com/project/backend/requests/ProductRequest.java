@@ -5,7 +5,7 @@ import java.util.Objects;
 public class ProductRequest {
     private String name;
     private int code;
-    private int price;
+    private float price;
 
     public ProductRequest () {
     }
@@ -29,7 +29,7 @@ public class ProductRequest {
         this.code = code;
     }
     public int getPrice() {
-        return price;
+        return (int) price;
     }
     public void setPrice(int price) {
         this.price = price;
